@@ -1,3 +1,13 @@
 <resources>
-    <string name="app_name">Games Collection</string>
+    <string name="app_name">Coleção de Jogos</string>
+    <string name="aboutBtn">Sobre o Aplicativo</string>
+    <string name="nameTxt">Nome do Desenvolvedor</string>
+    <string name="devNameTxt">André Silva Poletto</string>
+    <string name="raTxt">R.A. do Desenvolvedor</string>
+    <string name="devRaTxt">1581635</string>
+    <string name="classTxt">Curso do Desenvolvedor</string>
+    <string name="devClasstxt">Engenharia de Computação</string>
+    <string name="appTitleHintTxt">Coleção de Jogos</string>
+    <string name="aboutTxt">Este aplicativo lhe permite cadastrar e gerenciar seus jogos de um modo fácil e intuitivo. Evitando compras de jogos repetidos ou ainda emprestimos esquecidos.</string>
+    <string name="addGameBtn">Adicionar jogo +</string>
 </resources>
