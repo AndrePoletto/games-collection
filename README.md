@@ -1,6 +1,6 @@
 # Games Collection
 ### A repository for android college project
-- [ ] Especifique o tema que trata a aplicação. 
+- [x] Especifique o tema que trata a aplicação. 
       Este tema deverá ter sido lançado pelo aluno no questionário a parte sobre "Tema dos Projetos Finais", 
       o mesmo deve ser aprovado previamente pelo professor. Deve-se evitar temas repetidos dentro da turma. 			               
 - [ ] Cadastre dados lançados pelo usuário, que tenham relação com a regra de negócio proposta para a aplicação; 			                 
