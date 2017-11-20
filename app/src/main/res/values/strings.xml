@@ -10,4 +10,14 @@
     <string name="appTitleHintTxt">Coleção de Jogos</string>
     <string name="aboutTxt">Este aplicativo lhe permite cadastrar e gerenciar seus jogos de um modo fácil e intuitivo. Evitando compras de jogos repetidos ou ainda emprestimos esquecidos.</string>
     <string name="addGameBtn">Adicionar jogo +</string>
+    <string name="gameTitleTxt">Jogo</string>
+    <string name="producerTxt">Produtora</string>
+    <string name="plataformTxt">Plataforma</string>
+    <string name="rateTxt">Nota</string>
+    <string name="dateTxt">Lançamento</string>
+    <string name="xBoxTxt">Xbox One </string>
+    <string name="ps4Txt">Playstation 4</string>
+    <string name="nintendoTxt">Nintendo Switch</string>
+    <string name="compTxt">Computer</string>
+    <string name="addGameInfoBtn">Adicionar</string>
 </resources>
