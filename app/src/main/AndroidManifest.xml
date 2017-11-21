@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.DayNight.NoActionBar">
+        android:theme="@style/Theme.AppCompat.DayNight">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,17 +17,15 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SecondActivity"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
-        </activity>
-        <activity android:name=".ThirdActivity"
-            android:parentActivityName=".MainActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" /></activity>
+            android:name=".AboutActivity"
+            android:label="@string/secondActivityTitle" />
+        <activity
+            android:name=".GameActivity"
+            android:label="@string/fourthActivityTitle" />
+        <activity
+            android:name=".AddProducerActivity"
+            android:label="@string/fifthActivityTitle"></activity>
+        <activity android:name=".ViewGameActivity"></activity>
     </application>
 
 </manifest>

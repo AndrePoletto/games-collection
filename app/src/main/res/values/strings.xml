@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Coleção de Jogos</string>
+    <string name="secondActivityTitle">Sobre</string>
+    <string name="thirdActivityTitle">Adicionar Jogo</string>
+    <string name="fourthActivityTitle">Jogo</string>
+    <string name="fifthActivityTitle">Adicionar Produtora</string>
     <string name="aboutBtn">Sobre o Aplicativo</string>
     <string name="nameTxt">Nome do Desenvolvedor</string>
     <string name="devNameTxt">André Silva Poletto</string>
@@ -10,7 +14,7 @@
     <string name="appTitleHintTxt">Coleção de Jogos</string>
     <string name="aboutTxt">Este aplicativo lhe permite cadastrar e gerenciar seus jogos de um modo fácil e intuitivo. Evitando compras de jogos repetidos ou ainda emprestimos esquecidos.</string>
     <string name="addGameBtn">Adicionar jogo +</string>
-    <string name="gameTitleTxt">Jogo</string>
+    <string name="gameTitleTxt">Nome</string>
     <string name="producerTxt">Produtora</string>
     <string name="plataformTxt">Plataforma</string>
     <string name="rateTxt">Nota</string>
@@ -20,4 +24,8 @@
     <string name="nintendoTxt">Nintendo Switch</string>
     <string name="compTxt">Computer</string>
     <string name="addGameInfoBtn">Adicionar</string>
+    <string name="saveBtn">Salvar</string>
+    <string name="menuEditItem">editar</string>
+    <string name="excludeMenuItem">excluir</string>
+    <string name="nullMsgTxt">null</string>
 </resources>
