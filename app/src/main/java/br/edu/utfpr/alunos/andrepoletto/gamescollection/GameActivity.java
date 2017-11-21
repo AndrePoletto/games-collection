@@ -77,23 +77,27 @@ public class GameActivity extends AppCompatActivity {
         game.setTitle(gameNameEditText.getText().toString());
         game.setRelease(releaseEditText.getText().toString());
         game.setProducer(producerEditText.getText().toString());
-        if(radioGroupOne.isSelected()){
-            switch (radioGroupOne.getCheckedRadioButtonId()){
-                case R.id.xBoxRadioButton:
-                    game.setPlataform("xBox One");
-                case R.id.psRadioButton:
-                    game.setPlataform("Playstation 4");
-            }
+        switch (radioGroupOne.getCheckedRadioButtonId()){
+            case R.id.xBoxRadioButton:
+                game.setPlataform("xBox One");
+                break;
+            case R.id.psRadioButton:
+                game.setPlataform("Playstation 4");
+                break;
         }
-        else{
-            switch (radioGroupTwo.getCheckedRadioButtonId()) {
-                case R.id.NinRadioButton:
-                    game.setPlataform("Nintendo Switch");
-                case R.id.pcRadioButton:
-                    game.setPlataform("PC");
-            }
 
+        switch (radioGroupTwo.getCheckedRadioButtonId()) {
+            case R.id.NinRadioButton:
+                game.setPlataform("Nintendo Switch");
+                break;
+            case R.id.pcRadioButton:
+                game.setPlataform("PC");
+                break;
+            default:
+                break;
         }
+
+
         game.setRate(Double.valueOf(ratingBar.getProgress()));
 
         dao.insert(game);
@@ -132,29 +136,4 @@ public class GameActivity extends AppCompatActivity {
             return super.onOptionsItemSelected(item);
         }
     }
-
-
-    /**
-     * Function to load the spinner data from SQLite database
-     * */
-    //private void loadSpinnerData() {
-    // database handler
-    //DatabaseHandler db = new DatabaseHandler(getApplicationContext());
-
-    // Spinner Drop down elements
-    //   List<String> labels = new ArrayList<>();
-    //   labels.add("one");
-    //   labels.add("two");/*db.getAllLabels()*/;
-
-    // Creating adapter for spinner
-    //  ArrayAdapter<String> dataAdapter = new ArrayAdapter<>(this,
-    //         android.R.layout.simple_spinner_item, labels);
-
-    // Drop down layout style - list view with radio button
-    // dataAdapter
-    //        .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-    // attaching data adapter to spinner
-    //  producerEditText.setAdapter(dataAdapter);
-    //}
 }

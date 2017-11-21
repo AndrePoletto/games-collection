@@ -1,12 +1,15 @@
 package br.edu.utfpr.alunos.andrepoletto.gamescollection;
 
-import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -20,21 +23,49 @@ public class MainActivity extends AppCompatActivity {
     //public static final String ID      = "ID";
     public static final int    NEW    = 1;
     public static final int    EDIT = 2;
-    public static final int    VIEW = 3;
+    //public static final int    VIEW = 3;
 
     public ListView gamesList;
+    public Game gameSelected;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        gamesList = (ListView) findViewById(R.id.gamesList);
+
+        registerForContextMenu(gamesList);
+    }
+
+    DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+
+            switch(which){
+                case DialogInterface.BUTTON_POSITIVE:
+                    deleteGame(gameSelected);
+                    break;
+                case DialogInterface.BUTTON_NEGATIVE:
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    @Override
+    protected void onResume(){
+        loadList();
+        super.onResume();
+    }
+
+    private void loadList() {
         GameDao dao = new GameDao(this);
         List<Game> games = dao.searchGames();
         dao.close();
 
-        gamesList = (ListView) findViewById(R.id.gamesList);
-        ArrayAdapter <Game> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, games);
+        ArrayAdapter<Game> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, games);
         gamesList.setAdapter(adapter);
     }
 
@@ -63,6 +94,38 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        getMenuInflater().inflate(R.menu.context_menu, menu);
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
+        gameSelected = (Game) gamesList.getItemAtPosition(info.position);
+    }
+
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.editMenuItem:
+                showEditGameActivity();
+                return true;
+            case R.id.deleteMenuItem:
+                AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+                builder.setTitle(R.string.title_alert);
+                builder.setIcon(android.R.drawable.ic_dialog_alert);
+
+                builder.setMessage(R.string.msgAlert);
+
+                builder.setPositiveButton(R.string.option_yes, listener);
+                builder.setNegativeButton(R.string.option_no, listener);
+
+                AlertDialog alert = builder.create();
+                alert.show();
+                return true;
+            default:
+                return super.onContextItemSelected(item);
+        }
+    }
+
     public void showAboutActivity() {
         //Creates the intent of initiate the AboutActivity
         Intent intent = new Intent(this, AboutActivity.class);
@@ -79,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, NEW);
     }
 
-    public void showEditActivity(View view) {
+    public void showEditGameActivity() {
         //Creates the intent of initiate the GameActivity
         Intent intent = new Intent(this, GameActivity.class);
         //Adds info on intent
@@ -88,19 +151,10 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, EDIT);
     }
 
-    public void showViewActivity(View view) {
-        //Creates the intent of initiate the GameActivity
-        Intent intent = new Intent(this, ViewGameActivity.class);
-        //Adds info on intent
-        intent.putExtra(MODE, VIEW);
-        //Starts a new Activity
-        startActivityForResult(intent, VIEW);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if ((requestCode == NEW || requestCode == EDIT) && resultCode == Activity.RESULT_OK){
-            //listaAdapter.notifyDataSetChanged();
-        }
+    public void deleteGame(Game game){
+        GameDao dao = new GameDao(this);
+        dao.delete(game);
+        dao.close();
+        loadList();
     }
 }

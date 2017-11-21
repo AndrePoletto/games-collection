@@ -63,4 +63,11 @@ public class GameDao extends SQLiteOpenHelper {
 
         return games;
     }
+
+
+    public void delete(Game game) {
+        SQLiteDatabase db = getWritableDatabase();
+        String params = (game.getId().toString());
+        db.delete("Games", "id = ?", new String[]{params});
+    }
 }

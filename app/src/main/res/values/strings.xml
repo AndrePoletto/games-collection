@@ -6,9 +6,9 @@
     <string name="fifthActivityTitle">Adicionar Produtora</string>
     <string name="aboutBtn">Sobre o Aplicativo</string>
     <string name="nameTxt">Nome do Desenvolvedor</string>
-    <string name="devNameTxt">André Silva Poletto</string>
+    <string name="devNameTxt" translatable="false">André Silva Poletto</string>
     <string name="raTxt">R.A. do Desenvolvedor</string>
-    <string name="devRaTxt">1581635</string>
+    <string name="devRaTxt" translatable="false">1581635</string>
     <string name="classTxt">Curso do Desenvolvedor</string>
     <string name="devClasstxt">Engenharia de Computação</string>
     <string name="appTitleHintTxt">Aplicativo</string>
@@ -19,15 +19,21 @@
     <string name="plataformTxt">Plataforma</string>
     <string name="rateTxt">Nota</string>
     <string name="dateTxt">Lançamento</string>
-    <string name="xBoxTxt">Xbox One </string>
-    <string name="ps4Txt">Playstation 4</string>
-    <string name="nintendoTxt">Nintendo Switch</string>
-    <string name="compTxt">Computer</string>
+    <string name="xBoxTxt" translatable="false">Xbox One </string>
+    <string name="ps4Txt" translatable="false">Playstation 4</string>
+    <string name="nintendoTxt" translatable="false">Nintendo Switch</string>
+    <string name="compTxt">Computador</string>
     <string name="addGameInfoBtn">Adicionar</string>
     <string name="saveBtn">Salvar</string>
     <string name="menuEditItem">editar</string>
     <string name="excludeMenuItem">excluir</string>
-    <string name="nullMsgTxt">null</string>
+    <string name="nullMsgTxt" translatable="false">null</string>
     <string name="successMsg">Jogo</string>
     <string name="endSuccessMsg">cadastrado com sucesso</string>
+    <string name="deleteTxt">Deletar</string>
+    <string name="editItemTxt">Editar</string>
+    <string name="title_alert">Atenção</string>
+    <string name="msgAlert">Deseja realmente deletar este item?</string>
+    <string name="option_yes">Sim</string>
+    <string name="option_no">Não</string>
 </resources>

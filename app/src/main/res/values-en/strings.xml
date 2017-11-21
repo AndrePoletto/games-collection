@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Games Collection</string>
+    <string name="appTitleHintTxt">App</string>
+    <string name="addGameInfoBtn">Add</string>
+    <string name="addGameBtn">This application allows you to register and manage your games in an easy and intuitive way. Avoiding repeated game purchases or even forgotten loans.</string>
+    <string name="aboutBtn">About the app</string>
+    <string name="classTxt">Developer course</string>
+    <string name="compTxt">Computer</string>
+    <string name="dateTxt">Launch</string>
+    <string name="devClasstxt">Computer Engineering</string>
+    <string name="devNameTxt"></string>
+    <string name="endSuccessMsg">with success</string>
+    <string name="excludeMenuItem">delete</string>
+    <string name="fifthActivityTitle">Add Producer</string>
+    <string name="fourthActivityTitle">Game</string>
+    <string name="gameTitleTxt">Name</string>
+    <string name="menuEditItem">Edit</string>
+    <string name="nameTxt">Developer Name</string>
+    <string name="nintendoTxt"></string>
+    <string name="plataformTxt">Platform</string>
+    <string name="producerTxt">Producer</string>
+    <string name="raTxt">Developer R.A.</string>
+    <string name="rateTxt">Rate</string>
+    <string name="saveBtn">Save</string>
+    <string name="secondActivityTitle">About</string>
+    <string name="successMsg">Game</string>
+    <string name="thirdActivityTitle">Add game</string>
+    <string name="xBoxTxt"></string>
+    <string name="aboutTxt">" This application allows you to register and manage your games in an easy and intuitive way. Avoiding repeated game purchases or even forgotten loans."</string>
+</resources>
