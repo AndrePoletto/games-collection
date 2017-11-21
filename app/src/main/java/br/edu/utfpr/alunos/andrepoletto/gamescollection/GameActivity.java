@@ -1,23 +1,16 @@
 package br.edu.utfpr.alunos.andrepoletto.gamescollection;
 
 import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.Spinner;
-
-import java.sql.Time;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
 
 public class GameActivity extends AppCompatActivity {
 
@@ -25,7 +18,6 @@ public class GameActivity extends AppCompatActivity {
     public Spinner producer_spinner;
     public RadioGroup radioGroupOne, radioGroupTwo;
     public RatingBar editRatingBar;
-    public Calendar myCalendar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,34 +33,9 @@ public class GameActivity extends AppCompatActivity {
         radioGroupTwo = (RadioGroup) findViewById(R.id.radioGroupTwoEdit);
         editRatingBar = (RatingBar) findViewById(R.id.editRatingBar);
 
-        myCalendar = Calendar.getInstance();
-
         radioGroupOne.setOnCheckedChangeListener(listener1);
         radioGroupTwo.setOnCheckedChangeListener(listener2);
-        releaseEditText.setOnClickListener(listener0);
     }
-
-    DatePickerDialog.OnDateSetListener date = new DatePickerDialog.OnDateSetListener() {
-
-        @Override
-        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-            //Auto-generated method stub
-            myCalendar.set(Calendar.YEAR, year);
-            myCalendar.set(Calendar.MONTH, monthOfYear);
-            myCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
-            updateLabel();
-        }
-
-    };
-
-    private View.OnClickListener listener0 = new  View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            //Auto-generated method stub
-            new DatePickerDialog(GameActivity.this, date, myCalendar.get(Calendar.YEAR), myCalendar.get(Calendar.MONTH), myCalendar.get(Calendar.DAY_OF_MONTH)).show();
-
-        }
-    };
 
     private RadioGroup.OnCheckedChangeListener listener1 = new RadioGroup.OnCheckedChangeListener() {
 
@@ -94,16 +61,9 @@ public class GameActivity extends AppCompatActivity {
         }
     };
 
-    private void updateLabel() {
-        String myFormat = "MM/dd/yy"; //In which you need put here
-        SimpleDateFormat sdf = new SimpleDateFormat(myFormat, Locale.US);
-
-        releaseEditText.setText(sdf.format(myCalendar.getTime()));
-    }
-
     public void showAddProducerActivity(View view){
-        //Creates the intent of initiate the GameActivity
-        Intent intent = new Intent(this, GameActivity.class);
+        //Creates the intent of initiate the AddProducerActivity
+        Intent intent = new Intent(this, AddProducerActivity.class);
         //Starts a new Activity
         startActivityForResult(intent, AddProducerActivity.ASKRESULT);
     }

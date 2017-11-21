@@ -21,7 +21,7 @@
 - [ ] Uso do SQLite ou ORM nas 4 operações básicas - 4,0 		      
 - [ ] Uso do SharedPreferences - 1,0 		      
 - [x] Uso dos Componentes Básicos de Interface - 1,0 		      
-- [ ] Uso de Menus de Opções - 1,0 		      
+- [x] Uso de Menus de Opções - 1,0
 - [ ] Uso de Menus de Ação Contextual - 1,0 		      
 - [x] Uso de Botões Up nas telas secundárias - 1,0 		      
 - [ ] Suporte a dois idiomas - 1,0      

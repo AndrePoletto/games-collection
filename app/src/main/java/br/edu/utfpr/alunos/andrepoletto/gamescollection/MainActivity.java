@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
@@ -11,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     //public static final String ID      = "ID";
     public static final int    NEW    = 1;
     public static final int    EDIT = 2;
-    public static final int    VIEW = 2;
+    public static final int    VIEW = 3;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,14 +21,39 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void showAboutActivity(View view) {
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch (item.getItemId()) {
+
+            case android.R.id.home:
+                this.finish();
+                return true;
+            case R.id.aboutMenuItem:
+                showAboutActivity();
+                return true;
+            case R.id.addGameMenu:
+                showAddGameActivity();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    public void showAboutActivity() {
         //Creates the intent of initiate the AboutActivity
         Intent intent = new Intent(this, AboutActivity.class);
         //Starts a new Activity
         startActivityForResult(intent, AboutActivity.ASKRESULT);
     }
 
-    public void showAddGameActivity(View view) {
+    public void showAddGameActivity() {
         //Creates the intent of initiate the GameActivity
         Intent intent = new Intent(this, GameActivity.class);
         //Adds info on intent
