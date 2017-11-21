@@ -12,13 +12,13 @@
         android:layout_height="60dp"
         android:layout_marginBottom="0dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
+        android:layout_marginRight="128dp"
         android:layout_marginTop="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/textView17"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="@+id/radioGroupTwoEdit"
-        app:layout_constraintVertical_bias="0.5"
-        app:layout_constraintTop_toTopOf="@+id/textView17">
+        app:layout_constraintTop_toTopOf="@+id/textView17"
+        app:layout_constraintHorizontal_bias="1.0">
 
         <RadioButton
             android:id="@+id/xBoxRadioButton"
@@ -183,7 +183,8 @@
         app:layout_constraintLeft_toRightOf="@+id/textView18"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView18"
-        app:layout_constraintVertical_bias="0.5" />
+        app:layout_constraintVertical_bias="0.5"
+        android:max="10"/>
 
     <EditText
         android:id="@+id/gameNameEditText"
@@ -191,14 +192,14 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="0dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="0dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="@+id/textView14"
-        app:layout_constraintHorizontal_bias="0.846"
+        app:layout_constraintHorizontal_bias="0.92"
         app:layout_constraintLeft_toRightOf="@+id/textView14"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView14"
@@ -217,48 +218,33 @@
         android:ems="10"
         android:inputType="date"
         app:layout_constraintBottom_toBottomOf="@+id/textView15"
-        app:layout_constraintHorizontal_bias="0.611"
+        app:layout_constraintHorizontal_bias="0.881"
         app:layout_constraintLeft_toRightOf="@+id/textView15"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="@+id/textView15"
         app:layout_constraintVertical_bias="1.0" />
-
-    <Spinner
-        android:id="@+id/producer_spinner_edit"
-        android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:layout_marginBottom="0dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="0dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView16"
-        app:layout_constraintHorizontal_bias="0.323"
-        app:layout_constraintLeft_toRightOf="@+id/textView16"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView16"
-        app:layout_constraintVertical_bias="0.5" />
-
-    <Button
-        android:id="@+id/button6"
-        style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="0dp"
-        android:layout_marginLeft="0dp"
-        android:layout_marginRight="0dp"
-        android:layout_marginTop="0dp"
-        android:drawableTop="@android:drawable/ic_menu_add"
-        android:onClick="showAddProducerActivity"
-        app:layout_constraintBottom_toBottomOf="@+id/producer_spinner_edit"
-        app:layout_constraintLeft_toRightOf="@+id/producer_spinner_edit"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/producer_spinner_edit"
-        app:layout_constraintVertical_bias="0.5" />
 
     <DatePicker
         android:id="@+id/datePicker2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone" />
+
+    <EditText
+        android:id="@+id/producerEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/textView16"
+        app:layout_constraintHorizontal_bias="0.857"
+        app:layout_constraintLeft_toRightOf="@+id/textView16"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView16"
+        app:layout_constraintVertical_bias="0.5" />
 
 </android.support.constraint.ConstraintLayout>

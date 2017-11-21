@@ -7,6 +7,13 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
+
+import java.util.List;
+
+import br.edu.utfpr.alunos.andrepoletto.gamescollection.dao.GameDao;
+import br.edu.utfpr.alunos.andrepoletto.gamescollection.model.Game;
 
 public class MainActivity extends AppCompatActivity {
     public static final String MODE    = "MODE";
@@ -15,10 +22,20 @@ public class MainActivity extends AppCompatActivity {
     public static final int    EDIT = 2;
     public static final int    VIEW = 3;
 
+    public ListView gamesList;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        GameDao dao = new GameDao(this);
+        List<Game> games = dao.searchGames();
+        dao.close();
+
+        gamesList = (ListView) findViewById(R.id.gamesList);
+        ArrayAdapter <Game> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, games);
+        gamesList.setAdapter(adapter);
     }
 
 

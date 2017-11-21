@@ -28,4 +28,6 @@
     <string name="menuEditItem">editar</string>
     <string name="excludeMenuItem">excluir</string>
     <string name="nullMsgTxt">null</string>
+    <string name="successMsg">Jogo</string>
+    <string name="endSuccessMsg">cadastrado com sucesso</string>
 </resources>

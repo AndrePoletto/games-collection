@@ -11,13 +11,16 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.Toast;
+
+import br.edu.utfpr.alunos.andrepoletto.gamescollection.dao.GameDao;
+import br.edu.utfpr.alunos.andrepoletto.gamescollection.model.Game;
 
 public class GameActivity extends AppCompatActivity {
 
-    public EditText gameNameEditText, releaseEditText;
-    public Spinner producer_spinner;
+    public EditText gameNameEditText, releaseEditText, producerEditText;
     public RadioGroup radioGroupOne, radioGroupTwo;
-    public RatingBar editRatingBar;
+    public RatingBar ratingBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,10 +31,10 @@ public class GameActivity extends AppCompatActivity {
 
         gameNameEditText = (EditText) findViewById(R.id.gameNameEditText);
         releaseEditText = (EditText) findViewById(R.id.releaseEditText);
-        producer_spinner = (Spinner) findViewById(R.id.producer_spinner_edit);
+        producerEditText = (EditText) findViewById(R.id.producerEditText);
         radioGroupOne = (RadioGroup) findViewById(R.id.radioGroupOneEdit);
         radioGroupTwo = (RadioGroup) findViewById(R.id.radioGroupTwoEdit);
-        editRatingBar = (RatingBar) findViewById(R.id.editRatingBar);
+        ratingBar = (RatingBar) findViewById(R.id.editRatingBar);
 
         radioGroupOne.setOnCheckedChangeListener(listener1);
         radioGroupTwo.setOnCheckedChangeListener(listener2);
@@ -42,7 +45,7 @@ public class GameActivity extends AppCompatActivity {
         @Override
         public void onCheckedChanged(RadioGroup group, int checkedId) {
             if (checkedId != -1) {
-                radioGroupTwo.setOnCheckedChangeListener(null); // remove the listener before clearing so we don't throw that stackoverflow exception(like Vladimir Volodin pointed out)
+                radioGroupTwo.setOnCheckedChangeListener(null); // remove the listener before clearing
                 radioGroupTwo.clearCheck(); // clear the second RadioGroup!
                 radioGroupTwo.setOnCheckedChangeListener(listener2); //reset the listener
             }
@@ -68,7 +71,38 @@ public class GameActivity extends AppCompatActivity {
         startActivityForResult(intent, AddProducerActivity.ASKRESULT);
     }
 
-    public void saveGame(){}
+    public void saveGame(){
+        GameDao dao = new GameDao(this);
+        Game game = new Game();
+        game.setTitle(gameNameEditText.getText().toString());
+        game.setRelease(releaseEditText.getText().toString());
+        game.setProducer(producerEditText.getText().toString());
+        if(radioGroupOne.isSelected()){
+            switch (radioGroupOne.getCheckedRadioButtonId()){
+                case R.id.xBoxRadioButton:
+                    game.setPlataform("xBox One");
+                case R.id.psRadioButton:
+                    game.setPlataform("Playstation 4");
+            }
+        }
+        else{
+            switch (radioGroupTwo.getCheckedRadioButtonId()) {
+                case R.id.NinRadioButton:
+                    game.setPlataform("Nintendo Switch");
+                case R.id.pcRadioButton:
+                    game.setPlataform("PC");
+            }
+
+        }
+        game.setRate(Double.valueOf(ratingBar.getProgress()));
+
+        dao.insert(game);
+        dao.close();
+
+        Toast.makeText(this, getString(R.string.successMsg) + game.getTitle() + getString(R.string.endSuccessMsg), Toast.LENGTH_SHORT).show();
+        setResult(Activity.RESULT_OK);
+        finish();
+    }
 
     public void cancelEdit(){
         setResult(Activity.RESULT_CANCELED);
@@ -121,6 +155,6 @@ public class GameActivity extends AppCompatActivity {
     //        .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
     // attaching data adapter to spinner
-    //  producer_spinner.setAdapter(dataAdapter);
+    //  producerEditText.setAdapter(dataAdapter);
     //}
 }
