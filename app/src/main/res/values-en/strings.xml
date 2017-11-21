@@ -9,7 +9,6 @@
     <string name="compTxt">Computer</string>
     <string name="dateTxt">Launch</string>
     <string name="devClasstxt">Computer Engineering</string>
-    <string name="devNameTxt"></string>
     <string name="endSuccessMsg">with success</string>
     <string name="excludeMenuItem">delete</string>
     <string name="fifthActivityTitle">Add Producer</string>
@@ -17,7 +16,6 @@
     <string name="gameTitleTxt">Name</string>
     <string name="menuEditItem">Edit</string>
     <string name="nameTxt">Developer Name</string>
-    <string name="nintendoTxt"></string>
     <string name="plataformTxt">Platform</string>
     <string name="producerTxt">Producer</string>
     <string name="raTxt">Developer R.A.</string>
@@ -26,6 +24,11 @@
     <string name="secondActivityTitle">About</string>
     <string name="successMsg">Game</string>
     <string name="thirdActivityTitle">Add game</string>
-    <string name="xBoxTxt"></string>
     <string name="aboutTxt">" This application allows you to register and manage your games in an easy and intuitive way. Avoiding repeated game purchases or even forgotten loans."</string>
+    <string name="editItemTxt">Edit</string>
+    <string name="deleteTxt">Delete</string>
+    <string name="title_alert">Caution</string>
+    <string name="option_no">No</string>
+    <string name="option_yes">Yes</string>
+    <string name="msgAlert">Do you really want to delete this item?</string>
 </resources>
