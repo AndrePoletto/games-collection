@@ -2,25 +2,29 @@ package br.edu.utfpr.alunos.andrepoletto.gamescollection;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import br.edu.utfpr.alunos.andrepoletto.gamescollection.dao.GameDao;
 import br.edu.utfpr.alunos.andrepoletto.gamescollection.model.Game;
 
 public class GameActivity extends AppCompatActivity {
+    public static final String GAME = "GAME";
 
     public EditText gameNameEditText, releaseEditText, producerEditText;
     public RadioGroup radioGroupOne, radioGroupTwo;
+    public RadioButton xBoxRadioBtn, psRadioBtn, ninRadioBtn, pcRadioBtn;
     public RatingBar ratingBar;
+    public String radioValue;
+    private Game digitalGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,12 +37,47 @@ public class GameActivity extends AppCompatActivity {
         releaseEditText = (EditText) findViewById(R.id.releaseEditText);
         producerEditText = (EditText) findViewById(R.id.producerEditText);
         radioGroupOne = (RadioGroup) findViewById(R.id.radioGroupOneEdit);
+        xBoxRadioBtn = (RadioButton) findViewById(R.id.xBoxRadioButton);
+        psRadioBtn = (RadioButton) findViewById(R.id.psRadioButton);
         radioGroupTwo = (RadioGroup) findViewById(R.id.radioGroupTwoEdit);
+        ninRadioBtn = (RadioButton) findViewById(R.id.NinRadioButton);
+        pcRadioBtn = (RadioButton) findViewById(R.id.pcRadioButton);
         ratingBar = (RatingBar) findViewById(R.id.editRatingBar);
 
         radioGroupOne.setOnCheckedChangeListener(listener1);
         radioGroupTwo.setOnCheckedChangeListener(listener2);
+
+        Intent intent = getIntent();
+        digitalGame = (Game) intent.getSerializableExtra(GAME);
+        if (digitalGame != null){
+            gameNameEditText.setText(digitalGame.getTitle());
+            releaseEditText.setText(digitalGame.getRelease());
+            producerEditText.setText(digitalGame.getProducer());
+            radioValue = digitalGame.getPlataform();
+            ratingBar.setRating(Float.valueOf(digitalGame.getRate().toString())/2);
+
+            switch (radioValue){
+                case "Xbox One":
+                    xBoxRadioBtn.setChecked(true);
+                    break;
+                case "Playstation 4":
+                    pcRadioBtn.setChecked(true);
+                    break;
+                case "Nintendo Switch":
+                    ninRadioBtn.setChecked(true);
+                    break;
+                default:
+                    pcRadioBtn.setChecked(true);
+                    break;
+            }
+        }
+        else{
+            digitalGame = new Game();
+            digitalGame.setId(Long.valueOf(-1));
+        }
     }
+
+
 
     private RadioGroup.OnCheckedChangeListener listener1 = new RadioGroup.OnCheckedChangeListener() {
 
@@ -71,8 +110,18 @@ public class GameActivity extends AppCompatActivity {
         startActivityForResult(intent, AddProducerActivity.ASKRESULT);
     }
 
+    public void saveNewGame(View view){
+        if(digitalGame.getId() != -1) {
+            editGame();
+        }
+        else {
+            saveGame();
+        }
+    }
+
     public void saveGame(){
         GameDao dao = new GameDao(this);
+
         Game game = new Game();
         game.setTitle(gameNameEditText.getText().toString());
         game.setRelease(releaseEditText.getText().toString());
@@ -103,8 +152,42 @@ public class GameActivity extends AppCompatActivity {
         dao.insert(game);
         dao.close();
 
-        Toast.makeText(this, getString(R.string.successMsg) + game.getTitle() + getString(R.string.endSuccessMsg), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, getString(R.string.successMsg) + " " + game.getTitle() + " " + getString(R.string.endSuccessMsg), Toast.LENGTH_SHORT).show();
         setResult(Activity.RESULT_OK);
+        finish();
+    }
+
+    public void editGame(){
+        GameDao dao = new GameDao(this);
+
+        digitalGame.setTitle(gameNameEditText.getText().toString());
+        digitalGame.setRelease(releaseEditText.getText().toString());
+        digitalGame.setProducer(producerEditText.getText().toString());
+        switch (radioGroupOne.getCheckedRadioButtonId()){
+            case R.id.xBoxRadioButton:
+                digitalGame.setPlataform("xBox One");
+                break;
+            case R.id.psRadioButton:
+                digitalGame.setPlataform("Playstation 4");
+                break;
+        }
+
+        switch (radioGroupTwo.getCheckedRadioButtonId()) {
+            case R.id.NinRadioButton:
+                digitalGame.setPlataform("Nintendo Switch");
+                break;
+            case R.id.pcRadioButton:
+                digitalGame.setPlataform("PC");
+                break;
+            default:
+                break;
+        }
+
+
+        digitalGame.setRate(Double.valueOf(ratingBar.getProgress()));
+
+        dao.update(digitalGame);
+        dao.close();
         finish();
     }
 
@@ -127,7 +210,12 @@ public class GameActivity extends AppCompatActivity {
                 this.finish();
                 return true;
             case R.id.saveMenu:
-                saveGame();
+                if(digitalGame.getId() != -1) {
+                    editGame();
+                }
+                else {
+                    saveGame();
+                }
                 return true;
             case R.id.cancelMenu:
                 cancelEdit();

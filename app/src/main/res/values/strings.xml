@@ -36,4 +36,5 @@
     <string name="msgAlert">Deseja realmente deletar este item?</string>
     <string name="option_yes">Sim</string>
     <string name="option_no">Não</string>
+    <string name="addProducerTxt">Adicionar Produtora</string>
 </resources>

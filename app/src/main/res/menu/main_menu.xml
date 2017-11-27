@@ -9,7 +9,4 @@
     <item
         android:id="@+id/aboutMenuItem"
         android:title="@string/aboutBtn" />
-    <item
-        android:id="@+id/gameTest"
-        android:title="Item" />
 </menu>

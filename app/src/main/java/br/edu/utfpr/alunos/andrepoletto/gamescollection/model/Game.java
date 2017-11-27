@@ -1,6 +1,8 @@
 package br.edu.utfpr.alunos.andrepoletto.gamescollection.model;
 
-public class Game {
+import java.io.Serializable;
+
+public class Game implements Serializable{
     private Long id;
     private String title, release, producer, plataform;
     private Double rate;

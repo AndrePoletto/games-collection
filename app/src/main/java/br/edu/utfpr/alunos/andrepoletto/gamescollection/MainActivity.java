@@ -2,9 +2,9 @@ package br.edu.utfpr.alunos.andrepoletto.gamescollection;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,11 +19,10 @@ import br.edu.utfpr.alunos.andrepoletto.gamescollection.dao.GameDao;
 import br.edu.utfpr.alunos.andrepoletto.gamescollection.model.Game;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String MODE    = "MODE";
-    //public static final String ID      = "ID";
-    public static final int    NEW    = 1;
-    public static final int    EDIT = 2;
-    //public static final int    VIEW = 3;
+    public static final String MODE = "MODE";
+    public static final String GAME = "GAME";
+    public static final int    NEW  = 1;
+
 
     public ListView gamesList;
     public Game gameSelected;
@@ -36,7 +35,17 @@ public class MainActivity extends AppCompatActivity {
         gamesList = (ListView) findViewById(R.id.gamesList);
 
         registerForContextMenu(gamesList);
+
+        gamesList.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            @Override
+            public void onItemClick(AdapterView<?> list, View itemClicked, int position, long id){
+                Game game = (Game) gamesList.getItemAtPosition(position);
+                showViewGameActivity(game);
+            }
+        });
     }
+
+
 
     DialogInterface.OnClickListener listener = new DialogInterface.OnClickListener() {
         @Override
@@ -68,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         ArrayAdapter<Game> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, games);
         gamesList.setAdapter(adapter);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -105,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onContextItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.editMenuItem:
-                showEditGameActivity();
+                showEditGameActivity(gameSelected);
                 return true;
             case R.id.deleteMenuItem:
                 AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -142,13 +150,22 @@ public class MainActivity extends AppCompatActivity {
         startActivityForResult(intent, NEW);
     }
 
-    public void showEditGameActivity() {
+    public void showEditGameActivity(Game game) {
         //Creates the intent of initiate the GameActivity
         Intent intent = new Intent(this, GameActivity.class);
         //Adds info on intent
-        intent.putExtra(MODE, EDIT);
+        intent.putExtra(GAME, game);
         //Starts a new Activity
-        startActivityForResult(intent, EDIT);
+        startActivity(intent);
+    }
+
+    public void showViewGameActivity(Game game) {
+        //Creates the intent of initiate the ViewGameActivity
+        Intent intent = new Intent(this, ViewGameActivity.class);
+        //Adds info on intent
+        intent.putExtra(GAME, game);
+        //Starts a new Activity
+        startActivity(intent);
     }
 
     public void deleteGame(Game game){

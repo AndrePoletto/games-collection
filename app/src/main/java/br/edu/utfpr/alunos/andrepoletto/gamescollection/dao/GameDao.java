@@ -64,10 +64,24 @@ public class GameDao extends SQLiteOpenHelper {
         return games;
     }
 
-
     public void delete(Game game) {
         SQLiteDatabase db = getWritableDatabase();
-        String params = (game.getId().toString());
-        db.delete("Games", "id = ?", new String[]{params});
+        String[] params = {game.getId().toString()};
+        db.delete("Games", "id = ?", params);
+    }
+
+    public void update(Game game) {
+        SQLiteDatabase db = getWritableDatabase();
+
+        ContentValues data = new ContentValues();
+        data.put("title", game.getTitle());
+        data.put("release", game.getRelease());
+        data.put("producer", game.getProducer());
+        data.put("platform", game.getPlataform());
+        data.put("rate", game.getRate());
+
+        String[] params = {game.getId().toString()};
+
+        db.update("Games", data, "id = ?", params);
     }
 }
